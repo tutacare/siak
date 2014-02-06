@@ -1,0 +1,53 @@
+{% extends "base_dash_mahasiswa.html" %}
+
+{% block breadcrump %}
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Jadwal</h1>
+			<ol class="breadcrumb">
+				<li><a href="/mhs-dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+				<li class="active"><span class="glyphicon glyphicon-edit"></span> Jadwal</li>
+			</ol>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-info"><strong>Jadwal</strong> - Mata Kuliah</div>
+			<table class="table table-striped">
+			<tr>
+				<th>TAHUN AKADEMIK</th>
+				<th>PRODI</th>
+				<th>KODE MATKUL</th>
+				<th>MATA KULIAH</th>
+				<th>JURUSAN</th>
+				<th>RUANG</th>
+				<th>KELAS</th>
+				<th>DOSEN</th>
+				<th>HARI</th>
+				<th>JAM MULAI</th>
+				<th>JAM SELESAI</th>
+				<th>SKS</th>
+			</tr>             
+			{% for row_jadwal in jadwalb %}
+			<tr>
+				<td>{{ row_jadwal.tahun_akademik }}</td>
+				<td>{{ row_jadwal.prodi }}</td>
+				<td>{{ row_jadwal.mata_kuliah.kode_mtk }}</td>
+				<td>{{ row_jadwal.mata_kuliah }}</td>
+				<td>{{ row_jadwal.jurusan }}</td>
+				<td>{{ row_jadwal.ruang }}</td>
+				<td>{{ row_jadwal.kelas }}</td>
+				<td>{{ row_jadwal.dosen }}</td>
+				<td>{{ row_jadwal.hari }}</td>
+				<td>{{ row_jadwal.jam_mulai }}</td>
+				<td>{{ row_jadwal.jam_selesai }}</td>
+				<td>{{ row_jadwal.mata_kuliah.sks }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

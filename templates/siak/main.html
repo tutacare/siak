@@ -1,0 +1,41 @@
+{% extends "bbase.html" %}
+
+{% block content %}
+{% csrf_token %}
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">LOGIN</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                
+                <li><a href="/mahasiswa">LOGIN MAHASISWA</a></li>
+                <li><a href="/dosen">LOGIN DOSEN</a></li>      
+                </ul>            
+            </div>
+        </div>      
+    </div>    
+            
+
+    <div class="col-xs-6 col-sm-9">
+		Tahun Akademik : {{ tahun_akademik }}
+        <div class="page-header"><h1>Sistem Informasi Akademik <span class="label label-success">Python Django</span></h1></div>
+        Aplikasi Sistem Informasi Akademik ini bertujuan sebagai bahan pembelajaran 
+        pemrograman Python dengan menggunakan Framework Django. Sehingga dengan 
+        hadirnya Aplikasi Sistem Informasi Akademik ini kedepannya kita dapat membuat aplikasi lainnya dengan memahami 
+        konsep sederhana dari aplikasi ini.
+        <br /><br />
+        <div class="alert alert-success"><strong>SIAK</strong> - Sistem Informasi Akademik Python Django</div>
+    </div>
+                    
+<?php endforeach; ?>              
+             
+           
+            
+            
+               
+            </div>
+
+{% endblock %}

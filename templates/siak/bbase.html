@@ -1,0 +1,121 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Faza Shop The Online Shopping Experience">
+        <meta name="author" content="Irfan Mahfudz Guntur - ayes@bsmsite.com">
+        
+        <title>{{ profiles.nama }}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,900,700" rel="stylesheet" type="text/css" />
+        <link href="http://tools.bsmsite.com/template/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <style>
+            body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  line-height: 1.428571429;
+  color: #333333;
+  background-color: #ffffff;
+}h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+        </style>
+        <style type="text/css">
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+    }
+    .errorlist li {
+        background-color: red;
+        color: white;
+        display: block;
+        font-size: 10px;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+    }
+</style>
+        <!-- Custom styles for this template -->
+        <link href="http://tools.bsmsite.com/template/fazashop/css/fazashop.css" rel="stylesheet">
+        <link href="http://tools.bsmsite.com/template/global/css/carousel.css" rel="stylesheet">
+    </head>  
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">{{ profiles.nama }}</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+           
+        </div>
+    </div>
+</div>    
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+          {% for slide in slides %}
+          {% if slide.urutan == 1 %}       
+                  <div class="item active">
+              {% else %}
+                  <div class="item">
+          {% endif %}    
+              <img src="/media/{{ slide.banner }}">
+        </div>
+           {% endfor %}
+        
+       
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+    <div class="container">
+            {% block content %}{% endblock %}
+
+
+         <footer>
+    <hr />
+          <p>&copy;  2014 <a href="http://bsmsite.com/">BaseSystem Management</a>. All Rights Reserved.
+          </p>
+      </footer>
+
+</div>
+  
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://tools.bsmsite.com/template/jquery/jquery-1.10.2.min.js"></script>
+    <script src="http://tools.bsmsite.com/template/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+{% endspaceless %}

@@ -1,0 +1,102 @@
+{% extends "base_dash_mahasiswa.html" %}
+
+{% block breadcrump %}
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>KRS<small> Kartu Rencana Studi</small></h1>
+			<ol class="breadcrumb">
+				<li><a href="/mhs-dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+				<li class="active"><span class="glyphicon glyphicon-edit"></span> KRS</li>
+			</ol>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-lg-4">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<span class="badge">{{ tahun_akademik }}</span>
+				Tahun Akademik
+			</li>
+			<li class="list-group-item">
+				<span class="badge">{{ mahasiswa_list.nim }}</span>
+				NIM
+			</li>
+			<li class="list-group-item">
+				<span class="badge">{{ mahasiswa_list.nama }}</span>
+				Nama
+			</li>
+			<li class="list-group-item">
+				<span class="badge">{{ mahasiswa_list.jurusan }}</span>
+				Jurusan
+			</li>
+			<li class="list-group-item">
+				<span class="badge">{{ mahasiswa_list.prodi }}</span>
+				Program Studi
+			</li>
+			<li class="list-group-item">
+				<span class="badge">{{ mahasiswa_list.dosen }}</span>
+				Dosen Pembimbing
+			</li>
+		</ul>
+		</div>
+		<div class="col-lg-2">
+			<img src="/media/{{ mahasiswa_list.image }}" width="170" class="img-thumbnail">
+		</div>
+		<div class="col-lg-6">
+			<form action="/mhs-krs-add" method="post" role="form">
+				{% csrf_token %}
+				{% for row_jadwal in jadwal_list %}
+				<div class="checkbox">
+					<label>
+						<input name="array" type="checkbox" value="{{ row_jadwal.id }}">
+						{{ row_jadwal.mata_kuliah.kode_mtk }} - {{ row_jadwal.mata_kuliah }} - {{ row_jadwal.mata_kuliah.sks }} SKS - SMT {{ row_jadwal.mata_kuliah.semester }}
+					</label>
+				</div>
+				{% endfor %}
+				<INPUT type="hidden" name="folder_id" id="folder_id_hidden">
+				<div class="form-group text-right">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Ambil</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-info"><strong>KRS</strong> - Kartu Rencana Studi</div>
+			<table class="table table-striped">
+			<tr>
+				<th>NO</th>
+				<th>KODE MATKUL</th>
+				<th>NAMA MATA KULIAH</th>
+				<th>SKS</th>
+				<th>SEMESTER</th>
+				<th>HARI</th>
+				<th>JAM MULAI</th>
+				<th>JAM SELESAI</th>
+				<th>DOSEN</th>
+				<th>HAPUS</th>
+			</tr>             
+			{% for row_krs in krs_list %}
+			<tr>
+				<td>{{ row_jadwal.tahun_akademik }}</td>
+				<td>{{ row_jadwal.prodi }}</td>
+				<td>{{ row_jadwal.mata_kuliah }}</td>
+				<td>{{ row_jadwal.jurusan }}</td>
+				<td>{{ row_jadwal.ruang }}</td>
+				<td>{{ row_jadwal.kelas }}</td>
+				<td>{{ row_jadwal.dosen }}</td>
+				<td>{{ row_jadwal.hari }}</td>
+				<td>{{ row_jadwal.jam_mulai }}</td>
+				<td>{{ row_jadwal.jam_selesai }}</td>
+				<td>{{ row_jadwal.mata_kuliah.sks }}</td>
+			</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock %}
