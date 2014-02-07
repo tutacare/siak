@@ -212,9 +212,9 @@ class RegisterMahasiswa(models.Model):
 		verbose_name_plural = 'Register Mahasiswa'
 		
 class Krs(models.Model):
-    mahasiswa = models.ForeignKey(Mahasiswa, verbose_name='Mahasiswa')
-    tahun_akademik = models.ForeignKey(RegisterAkademik, verbose_name='Tahun Akademik')
-    jadwal = models.ForeignKey(Jadwal, verbose_name='Mata Kuliah')
+    mahasiswa = models.ForeignKey(Mahasiswa, verbose_name='Mahasiswa', null=True)
+    tahun_akademik = models.ForeignKey(RegisterAkademik, verbose_name='Tahun Akademik', null=True)
+    jadwal = models.ForeignKey(Jadwal, verbose_name='Mata Kuliah', null=True)
     tugas1 = models.IntegerField('Tugas 1', max_length=3, blank=True, null=True)
     tugas2 = models.IntegerField('Tugas 2', max_length=3, blank=True, null=True)
     tugas3 = models.IntegerField('Tugas 3', max_length=3, blank=True, null=True)

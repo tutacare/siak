@@ -17,7 +17,7 @@
 		<div class="col-lg-4">
 		<ul class="list-group">
 			<li class="list-group-item">
-				<span class="badge">{{ tahun_akademik }}</span>
+				<span class="badge">{{ tahun_akademik.tahun_akademik }}</span>
 				Tahun Akademik
 			</li>
 			<li class="list-group-item">
@@ -51,12 +51,13 @@
 				{% for row_jadwal in jadwal_list %}
 				<div class="checkbox">
 					<label>
-						<input name="array" type="checkbox" value="{{ row_jadwal.id }}">
+						<input name="jadwal_id" type="checkbox" value="{{ row_jadwal.id }}">
 						{{ row_jadwal.mata_kuliah.kode_mtk }} - {{ row_jadwal.mata_kuliah }} - {{ row_jadwal.mata_kuliah.sks }} SKS - SMT {{ row_jadwal.mata_kuliah.semester }}
 					</label>
+					<input type="hidden" name="mahasiswa_id" value="{{ mahasiswa_list.id }}">
+					<input type="hidden" name="tahun_akademik_id" value="{{ tahun_akademik.id }}">
 				</div>
 				{% endfor %}
-				<INPUT type="hidden" name="folder_id" id="folder_id_hidden">
 				<div class="form-group text-right">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Ambil</button>

@@ -101,10 +101,23 @@ def mhs_krs(request):
 		foo = None
 	#form = KrsAmbilForm()
 	return render_to_response('mhs_krs.html', {
-		'tahun_akademik':tahunakademik.tahun_akademik,
+		'tahun_akademik':tahunakademik,
 		'krs':foo,
 		'nama_mahasiswa':mhs.nama,
 		'mahasiswa_list':mhs,
 		'jadwal_list': jadwal_list,
 		'profiles':get_profile_software(request)
 		}, RequestContext(request))
+
+def mhs_krs_add(request):
+	if cek_login_mahasiswa(request) == 0:
+		return HttpResponseRedirect('/mahasiswa')
+
+	if request.method == 'POST':
+		jadwal_id = request.POST.getlist('jadwal_id[]', '')
+        mahasiswa_id = request.POST.getlist('mahasiswa_id[]', '')
+        tahun_akademik_id = request.POST.getlist('tahun_akademik_id[]', '')
+        krs_obj = Krs(jadwal_id=jadwal_id, mahasiswa_id=mahasiswa_id, tahun_akademik_id=tahun_akademik_id)
+        krs_obj.save()
+
+	return HttpResponseRedirect('/mhs-krs')
