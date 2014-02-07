@@ -114,10 +114,18 @@ def mhs_krs_add(request):
 		return HttpResponseRedirect('/mahasiswa')
 
 	if request.method == 'POST':
-		jadwal_id = request.POST.getlist('jadwal_id[]', '')
-        mahasiswa_id = request.POST.getlist('mahasiswa_id[]', '')
-        tahun_akademik_id = request.POST.getlist('tahun_akademik_id[]', '')
-        krs_obj = Krs(jadwal_id=jadwal_id, mahasiswa_id=mahasiswa_id, tahun_akademik_id=tahun_akademik_id)
-        krs_obj.save()
+		jadwal_id = request.POST.getlist('jadwal_id')
+		#mahasiswa_id = request.POST.getlist('mahasiswa_id')
+		#tahun_akademik_id = request.POST.getlist('tahun_akademik_id')
+		mhs =  Mahasiswa.objects.get(user__id=request.user.id)
+		tahunakademik = RegisterAkademik.objects.get(aktif=1)
+		#krs_obj = Krs(jadwal_id=jadwal_id, mahasiswa_id=mahasiswa_id, tahun_akademik_id=tahun_akademik_id,)
+		#krs_obj.save()
+		counter = 0
+		for data in jadwal_id:
+			#mahasiswa_id = mahasiswa_id.__getitem__(counter)
+			#tahun_akademik_id = tahun_akademik_id.__getitem__(counter)
+			Krs.objects.create(jadwal_id=int(data), mahasiswa_id=mhs.id, tahun_akademik_id=tahunakademik.id)
+			counter = counter + 1
 
 	return HttpResponseRedirect('/mhs-krs')
